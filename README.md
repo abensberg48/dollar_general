@@ -19,7 +19,7 @@ All input data can be found in the 'Inputs' folder within the repository, except
   
   1. [Retail Food Data](https://data.ny.gov/Economic-Development/Retail-Food-Stores/9a8c-vfzj/about_data): This dataset provides storefront information for every retail food establishment in the state of New York, as of February 2024. 
   2. [Census Cartographic Boundary Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.2022.html#list-tab-1883739534): For this project, I used both [county-level](Inputs/cb_2022_us_county_500k.zip) and [tract-level](Inputs/cb_2022_36_tract_500k.zip) data in my analysis. 
-  3. [Climate and Economic Justice Screening Tool](https://screeningtool.geoplatform.gov/en/downloads#3/33.47/-97.5): The data provided on this website provides different measures for disadvantaged communities, along with shapefiles. In this project I used the [shapefiles](Inputs/usa.zip) and the [csv file](Inputs/1.0-communities.csv) providing descriptive analysis of census tract demographics. 
+  3. [Climate and Economic Justice Screening Tool](https://screeningtool.geoplatform.gov/en/downloads#3/33.47/-97.5): The data provided on this website provides different measures for disadvantaged communities, along with shapefiles. In this project I used shapefiles and the [csv file](Inputs/1.0-communities.csv) providing descriptive analysis of census tract demographics. The shapefile is the .gitignore, due to its size, but it can be downloaded [here](https://screeningtool.geoplatform.gov/en/downloads#3/33.47/-97.5) (titled "Shapefile"). 
   4. Census API Call: This occurs in [2_censusdata.py](), and is done without an API key so a key is not necessary to run this script. The call returns demographic information for New York census tracts, including race, income, and percentage of citizens renting their housing. 
 
 ### <u>Python Scripts</u>
@@ -58,10 +58,14 @@ The distributions do not vary enough to make a decisive conclusion regarding the
 
 **Finding 4: A map of Dollar General stores onto Disadvantaged Communities suggest that there is little correlation between the two variables.**
 
-Here, the dots represent stores and red census tracts are communities that have been identified as disadvantaged by the Climate and Economic Justice Screening Tool. As was predicted by the previously created bar graph, there are areas in the state where there are clusters of stores. However, this doesn't seem to be a predictor for Dollar General locations. 
+
+Here, the dots represent stores and orange census tracts are communities that have been identified as disadvantaged by the Climate and Economic Justice Screening Tool. As was predicted by the previously created bar graph, there are areas in the state where there are clusters of stores. However, this doesn't seem to be a predictor for disadvantaged communities. 
+
+### <u>Disadvantaged Communities and Dollar Generals in New York</u>
 ![Disadvantaged Communities and Dollar Generals](Outputs/NYDACDGs.png)
 
 **Finding 5: The proportion of Disadvantaged and Low-Income Communities is similar for both Census tracts with and without Dollar Generals.**
+
 
 The Climate and Economic Justice Screening tool provides proxy-measures for communities that categorize them as 'disadvantaged' and 'low-income'. Based on the graphs below, it does not seem that Dollar General is specifically choosing locations with these characteristics. 
 ![Proportion of Disadvantaged Communities](Outputs/disadvantaged.png)
@@ -71,7 +75,7 @@ The Climate and Economic Justice Screening tool provides proxy-measures for comm
 
 I ran two linear probability models to try to identify a predictive relationship between variables that could have been missed in my visualizations.
 
- The first is model trying to ascertain the likelihood of a Dollar General being located in a census tract, given that the census tract is considered disadvantaged. This model suggests that being a disadvantaged community decreases the likelihood of a presence of a Dollar General by two percentage points, all else equal. 
+ The first model is trying to ascertain the likelihood of a Dollar General being located in a census tract, given that the census tract is considered disadvantaged. This model suggests that being a disadvantaged community decreases the likelihood of the presence of a Dollar General by two percentage points, all else equal. 
  ```python
                            OLS Regression Results                            
 ==============================================================================
